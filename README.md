@@ -76,6 +76,12 @@ The Rotational Mechanical Converter (IL) block provides an interface between the
 This relationship between fluid pressure and resultant torque is an idealized approximation of how a water wheel works.
 
 Now, to complete the hydroelectric power model, the outlet of one of the pipes is used as the pressure source for the Rotational Mechanical Converter (IL) block. After connecting the fluid model to the electromechanical system, the entire model will be a single physical network. Therefore, only one Solver Configuration block is needed.
+
+To implement a feedback control loop around the hydroelectric generator model, both an input and an output from the plant are needed. The output, which serves as the control objective, is the generator's rotation rate. A sensor which turns the Simscape block value into a Simulink signal is used.
+
+The plant input is the control signal. A valve is added to control how much water flows to the water wheel.
+The Local Restriction (IL) block (Isothermal Liquid > Elements), represents a restriction of variable area. A physical signal input controls the open area. This block can be used to model a valve or orifice.
+
 STEP 1: 
 The damped rotational system is designed with values on the blocks, set as Rotational Damper Block (Damping coefficient = 10 N*m/(rad/s)), Inertia Block (Inertia = 1915 kg*m^2), PS Constant (Constant = 50 N*m). 
 A Gear Box block (Mechanical > Mechanisms) is added to the model and the Inertia block is branched to the input port of the Gear Box block with the Gear ratio changed to 0.01.
@@ -119,6 +125,23 @@ Now, one of the Reservoir (IL) blocks connected to one of the outlet pipes in th
  
 Hence, one of the two Solver Configuration blocks is deleted.
 <img width="1108" height="493" alt="Fluid and Electromechanical Domains" src="https://github.com/user-attachments/assets/262f75b9-11e4-4321-958c-f92c3dfb4c81" />
+
+STEP 7:
+Ideal Rotational Motion Sensor block (Mechanical > Mechanical Sensors) is added and the sensor is connected so that it measures the rotational motion of the generator as a positive value.
+Then, a PS-Simulink Converter is added and connected to the angular velocity port, W, of the sensor.
+
+Now, the Pipe block connected to the Rotational Mechanical Converter block is replaced with a Local Restriction (IL) block.
+The Minimum restriction area parameter is set to 0.05 m^2 and the Maximum restriction area parameter to 1 m^2.
+A Simulink-PS Converter block is added and connected to the physical signal input port (AR) of the Local Restriction block.
+
+
+<img width="1177" height="534" alt="PS - Simulink converter simulation" src="https://github.com/user-attachments/assets/16a27780-c6a6-4191-87bb-fffdca276d00" /> <img width="1489" height="627" alt="Screenshot (969)" src="https://github.com/user-attachments/assets/9cc43bca-e61a-48b7-8aca-4df92f7fcb7d" />
+
+
+
+
+
+
 
 
 
