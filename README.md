@@ -31,6 +31,17 @@ Hydrostatic pressure is the pressure that results from the weight of the fluid. 
 The resistive elements in your circuit are the pipes and valves that control the flow. In this simple model, there is one pipe that directs water to the wheel, and another pipe that directs the water to an overflow area. A valve controls how much water can flow from the reservoir to the water wheel, and the remaining water is diverted to the overflow pipe. Both the surface of the reservoir and the outlet of the overflow pipe are at atmospheric pressure.
 
 ### Feedback Control (with Simscape and Simulink)
+After the model of the hydroelectric generator is designed, the effects of different physical parameters can be explored. For example, how much power the system generates when the reservoir is only half full or the effect of pipe diameter on the rotation rates of the wheel and generator can be measured. More than using physical models to explore these input/output relationships, an understanding of the system dynamics to design a control strategy can be used.
+
+Feedback control is a common strategy used to achieve a desired output, for example, to maintain a specific operating speed. To control the generator speed using feedback control, one would: measure the actual speed, compare it to the desired speed, and use information about that error to decide how much water to send to the water wheel. 
+
+The input/output relationship of a physical system being controlled is called a plant. It is important to note that Simscape is a powerful tool for plant modeling. Simulink, on the other hand, is an ideal tool for implementing feedback control. Feedback control systems in Simulink are laid out the same way as they are depicted in schematics, making them easy to implement and understand. The standard Simulink library even contains implementations of the most common type of controller: a proportional, integral, derivative (PID) Controller.
+
+<img width="753" height="162" alt="Feedback Control" src="https://github.com/user-attachments/assets/9daf7c24-d90d-45ba-8fe5-3501463d43fb" />
+
+The integration of a plant model in Simscape and a control system in Simulink is straightforward. After identifying the plant inputs and outputs, the Simulink-PS Converter and the PS-Simulink Converter blocks are used to create Simulink signals. Then a control loop using standard Simulink blocks is built.
+
+<img width="761" height="124" alt="PS - Simulink connector" src="https://github.com/user-attachments/assets/7d809fa6-26ad-4674-853a-41e712cca9e4" />
 
 
 ## METHODOLOGY
