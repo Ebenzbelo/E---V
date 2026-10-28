@@ -30,6 +30,9 @@ Hydrostatic pressure is the pressure that results from the weight of the fluid. 
 
 The resistive elements in your circuit are the pipes and valves that control the flow. In this simple model, there is one pipe that directs water to the wheel, and another pipe that directs the water to an overflow area. A valve controls how much water can flow from the reservoir to the water wheel, and the remaining water is diverted to the overflow pipe. Both the surface of the reservoir and the outlet of the overflow pipe are at atmospheric pressure.
 
+### Feedback Control (with Simscape and Simulink)
+
+
 ## METHODOLOGY
 Generators operate more efficiently when running at high rotation rates, but the water wheel spins at relatively low speed. To increase the efficiency of the generator, you can add a gear box.
 
@@ -92,7 +95,7 @@ Then, the Reservoir (IL) block is deleted at the outlet of the Pipe (IL) block, 
 
 <img width="850" height="365" alt="Step (3)" src="https://github.com/user-attachments/assets/d22aa16b-6f09-4917-bf03-c0c8446d9438" />
 
-STEP 5: The fluid and electrical need to be connected.
+STEP 5: The fluid and electromechanical domains need to be connected.
 First, the Ideal Torque Source and PS Constant blocks are deleted from the rotational portion of the system.
 A Rotational Mechanical Converter (IL) block (Isothermal Liquid > Elements) is added to the model and the rotational mechanical ports (R and C) are connected in place of the Ideal Torque Source block.
 
@@ -104,8 +107,13 @@ STEP 6:
 Now, one of the Reservoir (IL) blocks connected to one of the outlet pipes in the fluid domain is deleted and that pipe is connected to the Rotational Mechanical Converter (IL) block.
  
 Hence, one of the two Solver Configuration blocks is deleted.
+<img width="1108" height="493" alt="Fluid and Electromechanical Domains" src="https://github.com/user-attachments/assets/262f75b9-11e4-4321-958c-f92c3dfb4c81" />
 
-<img width="1108" height="493" alt="Fluid and Electrical Domains" src="https://github.com/user-attachments/assets/8eb87750-4d84-4abe-b14d-c84754b3463e" />
+
+
+
+
+
 
 
 
