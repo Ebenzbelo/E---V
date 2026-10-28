@@ -61,6 +61,7 @@ Once the fluid circuit that divides a pressure-driven flow into two streams and 
 The Rotational Mechanical Converter (IL) block provides an interface between the pressure of liquid connected to its A port and the torque across its R and C ports. In other words, the torque about the rotating shaft is equal to the pressure drop [N/m2] multiplied by the volume of fluid moved per rotation [m3/rad].
 This relationship between fluid pressure and resultant torque is an idealized approximation of how a water wheel works.
 
+Now, to complete the hydroelectric power model, the outlet of one of the pipes is used as the pressure source for the Rotational Mechanical Converter (IL) block. After connecting the fluid model to the electromechanical system, the entire model will be a single physical network. Therefore, only one Solver Configuration block is needed.
 STEP 1: 
 The damped rotational system is designed with values on the blocks, set as Rotational Damper Block (Damping coefficient = 10 N*m/(rad/s)), Inertia Block (Inertia = 1915 kg*m^2), PS Constant (Constant = 50 N*m). 
 A Gear Box block (Mechanical > Mechanisms) is added to the model and the Inertia block is branched to the input port of the Gear Box block with the Gear ratio changed to 0.01.
@@ -98,6 +99,15 @@ A Rotational Mechanical Converter (IL) block (Isothermal Liquid > Elements) is a
 In the Rotational Mechanical Converter (IL) block, the Interface volume displacement parameter is set to vol_displacement m^3/rad.
 
 <img width="1279" height="515" alt="Step (4)" src="https://github.com/user-attachments/assets/ab133f55-2a21-4e20-b9c8-bc88d48e4412" />
+
+STEP 6:
+Now, one of the Reservoir (IL) blocks connected to one of the outlet pipes in the fluid domain is deleted and that pipe is connected to the Rotational Mechanical Converter (IL) block.
+ 
+Hence, one of the two Solver Configuration blocks is deleted.
+
+<img width="1108" height="493" alt="Fluid and Electrical Domains" src="https://github.com/user-attachments/assets/8eb87750-4d84-4abe-b14d-c84754b3463e" />
+
+
 
 
 
