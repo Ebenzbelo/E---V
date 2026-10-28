@@ -78,9 +78,15 @@ This relationship between fluid pressure and resultant torque is an idealized ap
 Now, to complete the hydroelectric power model, the outlet of one of the pipes is used as the pressure source for the Rotational Mechanical Converter (IL) block. After connecting the fluid model to the electromechanical system, the entire model will be a single physical network. Therefore, only one Solver Configuration block is needed.
 
 To implement a feedback control loop around the hydroelectric generator model, both an input and an output from the plant are needed. The output, which serves as the control objective, is the generator's rotation rate. A sensor which turns the Simscape block value into a Simulink signal is used.
-
 The plant input is the control signal. A valve is added to control how much water flows to the water wheel.
 The Local Restriction (IL) block (Isothermal Liquid > Elements), represents a restriction of variable area. A physical signal input controls the open area. This block can be used to model a valve or orifice.
+
+The creation of a control system requires a reference signal (the desired speed), an error calculation, and a controller. Following the blocks from the Simulink libraries:
+
+<img width="387" height="192" alt="Table" src="https://github.com/user-attachments/assets/b8d9013e-a871-4892-9c7f-ab934acce3e4" />
+
+A PI controller is used to manage the generator speed by specifying the valve opening.
+
 
 STEP 1: 
 The damped rotational system is designed with values on the blocks, set as Rotational Damper Block (Damping coefficient = 10 N*m/(rad/s)), Inertia Block (Inertia = 1915 kg*m^2), PS Constant (Constant = 50 N*m). 
@@ -136,6 +142,22 @@ A Simulink-PS Converter block is added and connected to the physical signal inpu
 
 
 <img width="1177" height="534" alt="PS - Simulink converter simulation" src="https://github.com/user-attachments/assets/16a27780-c6a6-4191-87bb-fffdca276d00" /> <img width="1489" height="627" alt="Screenshot (969)" src="https://github.com/user-attachments/assets/9cc43bca-e61a-48b7-8aca-4df92f7fcb7d" />
+
+STEP 8:
+The Constant, Sum and Discrete PID Controller blocks are added to the model.
+The Constant value parameter is set to 500.
+The Sum block's List of signs parameter is changed to |+- (the | symbol helps arrange the ports.) 
+Then, the Constant block is connected to the add port (+) of the Sum block, and the Discrete PID Controller block is connected to the output port of the Sum block.
+
+<img width="434" height="77" alt="Control system" src="https://github.com/user-attachments/assets/857b9415-330d-4994-874a-f12ab320d6c4" />
+
+The Block Parameters dialog for the Discrete PID Controller block is open and the Controller parameter is set to PI.
+The Sample time parameter is set to 0.05.
+These parameters are changed in the Controller parameters section:
+Proportional (P): 1e-6
+Integral (I): 5e-3
+
+
 
 
 
