@@ -87,6 +87,13 @@ The creation of a control system requires a reference signal (the desired speed)
 
 A PI controller is used to manage the generator speed by specifying the valve opening.
 
+To complete the control loop, it is necessary to connect the controller output to the plant input and the plant output to the error calculation.
+
+The simulation runs, but the Diagnostic Viewer reports warnings.These warnings indicate an algebraic loop. An algebraic loop is a circular dependency where a block's input is needed in order to compute a block's output in a given time step.
+ 
+In this example, the model still runs, but this is not true for all models. It is good practice to break algebraic loops when possible. A simple way to break an algebraic loop is by introducing a delay.
+
+
 
 STEP 1: 
 The damped rotational system is designed with values on the blocks, set as Rotational Damper Block (Damping coefficient = 10 N*m/(rad/s)), Inertia Block (Inertia = 1915 kg*m^2), PS Constant (Constant = 50 N*m). 
@@ -156,6 +163,21 @@ The Sample time parameter is set to 0.05.
 These parameters are changed in the Controller parameters section:
 Proportional (P): 1e-6
 Integral (I): 5e-3
+
+<img width="1385" height="586" alt="Control setting" src="https://github.com/user-attachments/assets/469bb565-2501-4073-8eb1-a5b1b457f988" />
+
+STEP 9:
+Connect the output of the Discrete PID Controller block to the Local Restriction block via the Simulink-PS Converter block. Connect the angular velocity measurement to the negative port of the Sum block.
+
+<img width="1042" height="452" alt="STEP (5)" src="https://github.com/user-attachments/assets/410cb95b-6e9d-4317-ad24-31cdfaf843db" />
+
+Add a Unit Delay block (Simulink > Discrete). Connect the block between the angular velocity measurement and the - port of the Sum block to break the algebraic loop.
+
+<img width="866" height="485" alt="STEP (6)" src="https://github.com/user-attachments/assets/8635c244-9c1e-4f08-9ddb-f75a5a7ef936" />
+
+
+
+
 
 
 
