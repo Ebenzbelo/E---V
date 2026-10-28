@@ -58,6 +58,9 @@ First, a fluid circuit that splits the flow between the two outlet pipes is buil
 
 Once the fluid circuit that divides a pressure-driven flow into two streams and the electromechanical system in which a rotating wheel drives a generator are constructed, they are combined using a converter that connects the Isothermal Liquids domain to the Mechanical Rotational domain.
 
+The Rotational Mechanical Converter (IL) block provides an interface between the pressure of liquid connected to its A port and the torque across its R and C ports. In other words, the torque about the rotating shaft is equal to the pressure drop [N/m2] multiplied by the volume of fluid moved per rotation [m3/rad].
+This relationship between fluid pressure and resultant torque is an idealized approximation of how a water wheel works.
+
 STEP 1: 
 The damped rotational system is designed with values on the blocks, set as Rotational Damper Block (Damping coefficient = 10 N*m/(rad/s)), Inertia Block (Inertia = 1915 kg*m^2), PS Constant (Constant = 50 N*m). 
 A Gear Box block (Mechanical > Mechanisms) is added to the model and the Inertia block is branched to the input port of the Gear Box block with the Gear ratio changed to 0.01.
@@ -88,10 +91,16 @@ Then, the Reservoir (IL) block is deleted at the outlet of the Pipe (IL) block, 
 
 <img width="850" height="365" alt="Step (3)" src="https://github.com/user-attachments/assets/d22aa16b-6f09-4917-bf03-c0c8446d9438" />
 
-STEP 5:
-Delete the Ideal Torque Source and PS Constant blocks from the rotational portion of the system.
- 
-Add a Rotational Mechanical Converter (IL) block (Isothermal Liquid > Elements) to the model and connect the rotational mechanical ports (R and C) in place of the Ideal Torque Source block.
+STEP 5: The fluid and electrical need to be connected.
+First, the Ideal Torque Source and PS Constant blocks are deleted from the rotational portion of the system.
+A Rotational Mechanical Converter (IL) block (Isothermal Liquid > Elements) is added to the model and the rotational mechanical ports (R and C) are connected in place of the Ideal Torque Source block.
+
+In the Rotational Mechanical Converter (IL) block, the Interface volume displacement parameter is set to vol_displacement m^3/rad.
+
+<img width="1279" height="515" alt="Step (4)" src="https://github.com/user-attachments/assets/ab133f55-2a21-4e20-b9c8-bc88d48e4412" />
+
+
+
 
 
 
