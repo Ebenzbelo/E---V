@@ -45,6 +45,17 @@ In this design, the converter represents a generator that has a stationary casin
 
 The generator needs to provide power to a load, such as a battery. A resistor is used to represent a generic load.
 
+Like other domains, modeling in the Isothermal Liquid domain requires both a Solver Configuration block and a domain-specific reference—in this case, a Reservoir (IL) block. The Reservoir (IL) block represents an infinite volume of liquid at the specified pressure. The default pressure is atmospheric.
+In addition, the properties of the liquid are specified in the network using the Isothermal Liquid Properties (IL) block. The default liquid is water.
+
+The Pressure Source (IL) block (Isothermal Liquids > Sources) can be used to specify a pressure differential between ports A and B, and the pressure can be specified by an external physical signal or a constant value entered as a block parameter. The block icon changes to indicate this.
+A positive value causes the pressure at port B to be greater than port A. In this system, the pressure difference is constant, due to hydrostatic pressure, PB − PA =ρgh.
+
+A pressure differential drives water flow from high pressure to low pressure. In this simple fluid circuit, water flows through a pipe driven by hydrostatic pressure (ρgh).
+
+In the hydroelectric power model, some of the water leaving the pipe goes to the water wheel, and some is diverted to the overflow reservoir.
+First, a fluid circuit that splits the flow between the two outlet pipes is built.
+
 STEP 1: 
 The damped rotational system is designed with values on the blocks, set as Rotational Damper Block (Damping coefficient = 10 N*m/(rad/s)), Inertia Block (Inertia = 1915 kg*m^2), PS Constant (Constant = 50 N*m). 
 A Gear Box block (Mechanical > Mechanisms) is added to the model and the Inertia block is branched to the input port of the Gear Box block with the Gear ratio changed to 0.01.
@@ -59,6 +70,26 @@ A Resistor block is added to the model and connected it to the positive (+) port
 The Electrical Reference block is added to ground the electrical portion of the model.
 
 <img width="690" height="372" alt="Next Step" src="https://github.com/user-attachments/assets/cc535134-9113-424f-9c31-72b4716b61e8" />
+
+STEP 3: For the fluid domain, 
+A Reservoir (IL) block (Isothermal Liquid > Elements) and an Isothermal Liquid Properties (IL) block (Isothermal Liquid > Utilities) are added to your model.
+A Pressure Source (IL) block is added to your model. The Source type parameter is changed to Constant and set the Pressure differential parameter to rho*g*h_res Pa. Connect port A to the Reservoir (IL) block.
+
+<img width="837" height="608" alt="Step (2)" src="https://github.com/user-attachments/assets/ae1845f2-1a17-40c2-abce-f2b25f2eb57a" />
+
+STEP 4: 
+Add a Pipe (IL) block (Isothermal Liquids > Elements) and a second Reservoir (IL) block.
+In the Pipe (IL) block, set the Pipe length parameter to 20 m, the Cross-sectional area parameter to pi*(0.5/2)^2 m^2, and the Hydraulic diameter parameter to 0.5 m.
+Connect the inlet of the pipe, port A, to the Pressure Source block. Connect the outlet, port B, to the new Reservoir (IL) block.
+
+Then, the Reservoir (IL) block is deleted at the outlet of the Pipe (IL) block, to create two new copies of the Pipe (IL) block and connect them to the outlet of the original pipe such that the flow is split between them. Two new Reservoir (IL) blocks are added and connected to the open ends of the pipes.
+
+<img width="850" height="365" alt="Step (3)" src="https://github.com/user-attachments/assets/d22aa16b-6f09-4917-bf03-c0c8446d9438" />
+
+
+
+
+
 
 
 
