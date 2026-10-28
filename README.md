@@ -56,6 +56,8 @@ A pressure differential drives water flow from high pressure to low pressure. In
 In the hydroelectric power model, some of the water leaving the pipe goes to the water wheel, and some is diverted to the overflow reservoir.
 First, a fluid circuit that splits the flow between the two outlet pipes is built.
 
+Once the fluid circuit that divides a pressure-driven flow into two streams and the electromechanical system in which a rotating wheel drives a generator are constructed, they are combined using a converter that connects the Isothermal Liquids domain to the Mechanical Rotational domain.
+
 STEP 1: 
 The damped rotational system is designed with values on the blocks, set as Rotational Damper Block (Damping coefficient = 10 N*m/(rad/s)), Inertia Block (Inertia = 1915 kg*m^2), PS Constant (Constant = 50 N*m). 
 A Gear Box block (Mechanical > Mechanisms) is added to the model and the Inertia block is branched to the input port of the Gear Box block with the Gear ratio changed to 0.01.
@@ -78,13 +80,20 @@ A Pressure Source (IL) block is added to your model. The Source type parameter i
 <img width="837" height="608" alt="Step (2)" src="https://github.com/user-attachments/assets/ae1845f2-1a17-40c2-abce-f2b25f2eb57a" />
 
 STEP 4: 
-Add a Pipe (IL) block (Isothermal Liquids > Elements) and a second Reservoir (IL) block.
+A Pipe (IL) block (Isothermal Liquids > Elements) and a second Reservoir (IL) block are added.
 In the Pipe (IL) block, set the Pipe length parameter to 20 m, the Cross-sectional area parameter to pi*(0.5/2)^2 m^2, and the Hydraulic diameter parameter to 0.5 m.
-Connect the inlet of the pipe, port A, to the Pressure Source block. Connect the outlet, port B, to the new Reservoir (IL) block.
+The inlet of the pipe, port A, is connected to the Pressure Source block while the outlet, port B, is connected to the new Reservoir (IL) block.
 
 Then, the Reservoir (IL) block is deleted at the outlet of the Pipe (IL) block, to create two new copies of the Pipe (IL) block and connect them to the outlet of the original pipe such that the flow is split between them. Two new Reservoir (IL) blocks are added and connected to the open ends of the pipes.
 
 <img width="850" height="365" alt="Step (3)" src="https://github.com/user-attachments/assets/d22aa16b-6f09-4917-bf03-c0c8446d9438" />
+
+STEP 5:
+Delete the Ideal Torque Source and PS Constant blocks from the rotational portion of the system.
+ 
+Add a Rotational Mechanical Converter (IL) block (Isothermal Liquid > Elements) to the model and connect the rotational mechanical ports (R and C) in place of the Ideal Torque Source block.
+
+
 
 
 
