@@ -167,11 +167,11 @@ Integral (I): 5e-3
 <img width="1385" height="586" alt="Control setting" src="https://github.com/user-attachments/assets/469bb565-2501-4073-8eb1-a5b1b457f988" />
 
 STEP 9:
-Connect the output of the Discrete PID Controller block to the Local Restriction block via the Simulink-PS Converter block. Connect the angular velocity measurement to the negative port of the Sum block.
+The output of the Discrete PID Controller block is connected to the Local Restriction block via the Simulink-PS Converter block. Then, the angular velocity measurement is connected to the negative port of the Sum block.
 
 <img width="1042" height="452" alt="STEP (5)" src="https://github.com/user-attachments/assets/410cb95b-6e9d-4317-ad24-31cdfaf843db" />
 
-Add a Unit Delay block (Simulink > Discrete). Connect the block between the angular velocity measurement and the - port of the Sum block to break the algebraic loop.
+A Unit Delay block (Simulink > Discrete) is added. The block is connected between the angular velocity measurement and the - port of the Sum block to break the algebraic loop.
 
 <img width="866" height="485" alt="STEP (6)" src="https://github.com/user-attachments/assets/8635c244-9c1e-4f08-9ddb-f75a5a7ef936" />
 
