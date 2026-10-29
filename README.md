@@ -89,7 +89,7 @@ A PI controller is used to manage the generator speed by specifying the valve op
 
 To complete the control loop, it is necessary to connect the controller output to the plant input and the plant output to the error calculation.
 
-The simulation runs, but the Diagnostic Viewer reports warnings.These warnings indicate an algebraic loop. An algebraic loop is a circular dependency where a block's input is needed in order to compute a block's output in a given time step.
+After adding the control strategy, the simulation runs, but the Diagnostic Viewer reports warnings.These warnings indicate an algebraic loop. An algebraic loop is a circular dependency where a block's input is needed in order to compute a block's output in a given time step.
  
 In this example, the model still runs, but this is not true for all models. It is good practice to break algebraic loops when possible. A simple way to break an algebraic loop is by introducing a delay.
 
