@@ -174,6 +174,7 @@ The output of the Discrete PID Controller block is connected to the Local Restri
 A Unit Delay block (Simulink > Discrete) is added. The block is connected between the angular velocity measurement and the - port of the Sum block to break the algebraic loop.
 
 <img width="866" height="485" alt="STEP (6)" src="https://github.com/user-attachments/assets/8635c244-9c1e-4f08-9ddb-f75a5a7ef936" />
+## CONCLUSION
 
 
 
