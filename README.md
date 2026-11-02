@@ -176,36 +176,7 @@ A Unit Delay block (Simulink > Discrete) is added. The block is connected betwee
 <img width="866" height="485" alt="STEP (6)" src="https://github.com/user-attachments/assets/8635c244-9c1e-4f08-9ddb-f75a5a7ef936" />
 ## CONCLUSION
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## REFERENCE
 
 
 
