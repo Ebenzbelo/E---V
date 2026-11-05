@@ -177,6 +177,9 @@ A Unit Delay block (Simulink > Discrete) is added. The block is connected betwee
 ## CONCLUSION
 
 ## REFERENCE
+- <a href="https://matlabacademy.mathworks.com/details/simscape-onramp/simscape"> Simscape Onramp </a>
+- <a href="https://www.mathworks.com/"> MathWorks Inc.</a>
+
 
 
 
