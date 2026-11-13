@@ -176,6 +176,13 @@ A Unit Delay block (Simulink > Discrete) is added. The block is connected betwee
 <img width="866" height="485" alt="STEP (6)" src="https://github.com/user-attachments/assets/8635c244-9c1e-4f08-9ddb-f75a5a7ef936" />
 
 ## CONCLUSION
+This project successfully demonstrates the multidomain modeling of a hydroelectric power generation system using MATLAB/Simulink and Simscape. By integrating the fluid, mechanical, and electrical domains into a unified physical model, the project illustrates the fundamental principles of energy conversion from hydraulic energy to mechanical energy and ultimately to electrical energy.
+
+The implementation of a Proportional-Integral (PI) feedback controller provides a mechanism for regulating the generator's rotational speed by adjusting the water flow through a control valve. This highlights the importance of control systems in achieving stable and reliable power generation.
+
+Furthermore, the project demonstrates the effectiveness of model-based design in analyzing system dynamics, investigating physical parameters, and developing control strategies for renewable energy systems.
+
+Overall, this work provides a solid foundation for the design, simulation, control, and optimization of hydroelectric power generation systems. Future improvements could incorporate realistic energy losses, varying reservoir levels, load disturbances, and advanced control techniques to enhance system efficiency, stability, and reliability in real-world applications.
 
 ## REFERENCE
 - <a href="https://matlabacademy.mathworks.com/details/simscape-onramp/simscape"> Simscape Onramp </a>
